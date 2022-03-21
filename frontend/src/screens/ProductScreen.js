@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { Link, useParams, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap'
+import { Row, Col, Image, ListGroup, Card, Button, Form } from 'react-bootstrap'
 import Rating from '../components/Rating'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
@@ -9,7 +9,11 @@ import { listProductDetails } from '../actions/productActions'
 
 //NOTE https://stackoverflow.com/questions/70290770/react-typeerror-cannot-read-properties-of-undefined-reading-params
 
-const ProductScreen = ({}) => {
+const ProductScreen = () => {
+  const history = useNavigate()
+
+  const [qty, setQty] = useState(1)
+
   const { id } = useParams()
   const dispatch = useDispatch()
 
@@ -20,11 +24,15 @@ const ProductScreen = ({}) => {
     dispatch(listProductDetails(id))
   }, [dispatch, id])
 
+  const addToCartHandler = () => {
+    history(`/cart/${id}?qty=${qty}`)
+  }
+
   return (
     <>
-      <Link className='btn btn-light my-3' to='/'>
-        Back
-      </Link>
+      <Button variant='light' className='my-3' onClick={() => history(-1)}>
+        Go Back
+      </Button>
       {loading ? (
         <Loader />
       ) : error ? (
@@ -71,8 +79,32 @@ const ProductScreen = ({}) => {
                     </Col>
                   </Row>
                 </ListGroup.Item>
+                {product.countInStock > 0 && (
+                  <ListGroup.Item>
+                    <Row>
+                      <Col>Qty</Col>
+                      <Col>
+                        <Form.Control
+                          as='select'
+                          value={qty}
+                          onChange={(e) => setQty(e.target.value)}
+                        >
+                          {/* NOTE  https://www.reddit.com/r/learnjavascript/comments/kh15ac/what_is_arraykeys/*/}
+
+                          {[...Array(product.countInStock).keys()].map((x) => (
+                            <option key={x + 1} value={x + 1}>
+                              {x + 1}
+                            </option>
+                          ))}
+                        </Form.Control>
+                      </Col>
+                    </Row>
+                  </ListGroup.Item>
+                )}
+
                 <ListGroup.Item>
                   <Button
+                    onClick={addToCartHandler}
                     className='btn-block'
                     type='button'
                     disabled={product.countInStock === 0}

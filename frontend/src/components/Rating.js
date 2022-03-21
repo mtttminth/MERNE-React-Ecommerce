@@ -73,12 +73,13 @@ Rating.defaultProps = {
   color: '#f8e825',
 }
 
-//NOTE Rating.propTypes are optional and just for educational purposes
+/*NOTE Rating.propTypes are optional and just for educational purposes
 
 Rating.propTypes = {
   value: PropTypes.number.isRequired,
   text: PropTypes.string.isRequired,
   color: PropTypes.string,
 }
+*/
 
 export default Rating
