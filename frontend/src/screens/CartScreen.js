@@ -8,7 +8,6 @@ import { addToCart, removeFromCart } from '../actions/cartActions'
 //NOTE { search } = useLocation() is same as location.search
 const CartScreen = () => {
   const { search } = useLocation()
-
   const qtyQuery = new URLSearchParams(search).get('qty')
   const qty = qtyQuery ? Number(qtyQuery) : 1
 
