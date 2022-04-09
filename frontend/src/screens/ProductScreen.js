@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link, useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col, Image, ListGroup, Card, Button, Form } from 'react-bootstrap'
 import Rating from '../components/Rating'
@@ -10,7 +10,7 @@ import { listProductDetails } from '../actions/productActions'
 //NOTE https://stackoverflow.com/questions/70290770/react-typeerror-cannot-read-properties-of-undefined-reading-params
 
 const ProductScreen = () => {
-  const history = useNavigate()
+  const navigate = useNavigate()
 
   const [qty, setQty] = useState(1)
 
@@ -25,12 +25,12 @@ const ProductScreen = () => {
   }, [dispatch, id])
 
   const addToCartHandler = () => {
-    history(`/cart/${id}?qty=${qty}`)
+    navigate(`/cart/${id}?qty=${qty}`)
   }
 
   return (
     <>
-      <Button variant='light' className='my-3' onClick={() => history(-1)}>
+      <Button variant='dark' className='my-3' onClick={() => navigate(-1)}>
         Go Back
       </Button>
       {loading ? (
@@ -97,6 +97,15 @@ const ProductScreen = () => {
                             </option>
                           ))}
                         </Form.Control>
+                        {/* <Form.Select
+                          aria-label='Default select example'
+                          value={qty}
+                          onChange={(e) => setQty(e.target.value)}
+                        >
+                          <option value='1'>One</option>
+                          <option value='2'>Two</option>
+                          <option value='3'>Three</option>
+                        </Form.Select> */}
                       </Col>
                     </Row>
                   </ListGroup.Item>
@@ -107,6 +116,7 @@ const ProductScreen = () => {
                     onClick={addToCartHandler}
                     className='btn-block'
                     type='button'
+                    variant='dark'
                     disabled={product.countInStock === 0}
                   >
                     Add To Cart

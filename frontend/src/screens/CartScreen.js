@@ -14,7 +14,7 @@ const CartScreen = () => {
   const { id } = useParams()
   const productId = id
 
-  const history = useNavigate()
+  let navigate = useNavigate()
 
   const dispatch = useDispatch()
 
@@ -32,7 +32,7 @@ const CartScreen = () => {
   }
 
   const checkoutHandler = () => {
-    history('/login?redirect=shipping')
+    navigate('/login?redirect=/shipping')
   }
 
   return (
@@ -41,7 +41,15 @@ const CartScreen = () => {
         <h1>Shopping Cart</h1>
         {cartItems.length === 0 ? (
           <Message>
-            Your cart is empty <Link to='/'>Go Back</Link>
+            Your cart is empty{' '}
+            <Link
+              to='/'
+              onClick={() => {
+                navigate(-1)
+              }}
+            >
+              Go Back
+            </Link>
           </Message>
         ) : (
           <ListGroup variant='flush'>
@@ -104,6 +112,7 @@ const CartScreen = () => {
               <Button
                 type='button'
                 className='btn-block'
+                variant='dark'
                 disabled={cartItems.length === 0}
                 onClick={checkoutHandler}
               >

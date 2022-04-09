@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
-import { Form, Button, Row, Col, FloatingLabel } from 'react-bootstrap'
+import { Form, Button, FloatingLabel } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
@@ -16,7 +16,7 @@ const RegisterScreen = () => {
   const [confirmPassword, setConfirmPassword] = useState('')
   const [message, setMessage] = useState(null)
 
-  const history = useNavigate()
+  const navigate = useNavigate()
   const dispatch = useDispatch()
 
   const userRegister = useSelector((state) => state.userRegister)
@@ -26,9 +26,9 @@ const RegisterScreen = () => {
 
   useEffect(() => {
     if (userInfo) {
-      history(redirect)
+      navigate(redirect)
     }
-  }, [history, userInfo, redirect])
+  }, [navigate, userInfo, redirect])
 
   const submitHandler = (e) => {
     e.preventDefault()
@@ -46,79 +46,54 @@ const RegisterScreen = () => {
       {error && <Message variant='danger'>{error}</Message>}
       {loading && <Loader />}
       <Form onSubmit={submitHandler}>
-        <Row>
-          <Col xs={7}>
-            <FloatingLabel controlId='name' label='Name' className='mb-3'>
-              <Form.Control
-                type='name'
-                placeholder='Enter name'
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-            </FloatingLabel>
-          </Col>
-        </Row>
-        <Row>
-          <Col xs={7}>
-            <FloatingLabel
-              controlId='email'
-              label='Email address'
-              className='mb-3'
-            >
-              <Form.Control
-                type='email'
-                placeholder='name@example.com'
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </FloatingLabel>
-          </Col>
-        </Row>
-        <Row>
-          <Col xs={7}>
-            <FloatingLabel
-              controlId='password'
-              label='Password'
-              className='mb-3'
-            >
-              <Form.Control
-                type='password'
-                placeholder='Password'
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </FloatingLabel>
-          </Col>
-        </Row>
-        <Row>
-          <Col xs={7}>
-            <FloatingLabel
-              controlId='confirmPassword'
-              label='Confirm Password'
-              className='mb-3'
-            >
-              <Form.Control
-                type='password'
-                placeholder='Confirm Password'
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-              />
-            </FloatingLabel>
-          </Col>
-        </Row>
-        <Button type='submit' variant='primary' className='mt-3'>
+        <FloatingLabel controlId='name' label='Name' className='mb-3'>
+          <Form.Control
+            type='name'
+            placeholder='Enter name'
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </FloatingLabel>
+
+        <FloatingLabel controlId='email' label='Email address' className='mb-3'>
+          <Form.Control
+            type='email'
+            placeholder='name@example.com'
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </FloatingLabel>
+
+        <FloatingLabel controlId='password' label='Password' className='mb-3'>
+          <Form.Control
+            type='password'
+            placeholder='Password'
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </FloatingLabel>
+
+        <FloatingLabel
+          controlId='confirmPassword'
+          label='Confirm Password'
+          className='mb-3'
+        >
+          <Form.Control
+            type='password'
+            placeholder='Confirm Password'
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
+        </FloatingLabel>
+
+        <Button type='submit' variant='dark' className='my-3'>
           Register
         </Button>
       </Form>
-
-      <Row className='py-3'>
-        <Col>
-          Have an account?{' '}
-          <Link to={redirect ? `/login?redirect=${redirect}` : '/login'}>
-            Login
-          </Link>
-        </Col>
-      </Row>
+      Have an account?{' '}
+      <Link to={redirect ? `/login?redirect=${redirect}` : '/login'}>
+        Login
+      </Link>
     </FormContainer>
   )
 }

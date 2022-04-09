@@ -38,7 +38,7 @@ const HomeScreen = () => {
                 <Button
                   onClick={() => handleClick(category)}
                   key={category}
-                  variant='light'
+                  variant='dark'
                   style={{ margin: '5px' }}
                 >
                   {category}
@@ -61,8 +61,6 @@ const HomeScreen = () => {
       )}
     </>
   )
-}
-{
 }
 // {products.map((product) => (
 export default HomeScreen
