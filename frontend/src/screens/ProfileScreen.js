@@ -124,7 +124,7 @@ const ProfileScreen = () => {
               </FloatingLabel>
             </Col>
           </Row>
-          <Button type='submit' variant='dark' className='mt-3'>
+          <Button type='submit' variant='secondary' className='mt-3'>
             Update
           </Button>
         </Form>
@@ -169,7 +169,7 @@ const ProfileScreen = () => {
                   </td>
                   <td>
                     <LinkContainer to={`/order/${order._id}`}>
-                      <Button className='btn-sm' variant='light'>
+                      <Button className='btn-sm' variant='secondary'>
                         Details
                       </Button>
                     </LinkContainer>

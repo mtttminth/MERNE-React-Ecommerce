@@ -83,7 +83,7 @@ const CartScreen = () => {
                   <Col md={2}>
                     <Button
                       type='button'
-                      variant='light'
+                      variant='secondary'
                       onClick={() => removeFromCartHandler(item.product)}
                     >
                       <i className='fas fa-trash'></i>
@@ -112,7 +112,7 @@ const CartScreen = () => {
               <Button
                 type='button'
                 className='btn-block'
-                variant='dark'
+                variant='secondary'
                 disabled={cartItems.length === 0}
                 onClick={checkoutHandler}
               >

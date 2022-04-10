@@ -178,7 +178,8 @@ const OrderScreen = () => {
                   <Col>${order.totalPrice}</Col>
                 </Row>
               </ListGroup.Item>
-              {!order.isPaid && (
+              {/* NOTE checked paymentMethod */}
+              {!order.isPaid && order.paymentMethod === 'PayPal' && (
                 <ListGroup.Item>
                   {loadingPay && <Loader />}
                   {!sdkReady ? (

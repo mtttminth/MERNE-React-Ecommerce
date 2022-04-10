@@ -65,7 +65,7 @@ const LoginScreen = () => {
           />
         </FloatingLabel>
 
-        <Button type='submit' variant='dark' className='my-3'>
+        <Button type='submit' variant='secondary' className='my-3'>
           Sign In
         </Button>
       </Form>

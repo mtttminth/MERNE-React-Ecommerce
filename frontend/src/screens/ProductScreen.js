@@ -30,7 +30,7 @@ const ProductScreen = () => {
 
   return (
     <>
-      <Button variant='dark' className='my-3' onClick={() => navigate(-1)}>
+      <Button variant='secondary' className='my-3' onClick={() => navigate(-1)}>
         Go Back
       </Button>
       {loading ? (
@@ -116,7 +116,7 @@ const ProductScreen = () => {
                     onClick={addToCartHandler}
                     className='btn-block'
                     type='button'
-                    variant='dark'
+                    variant='secondary'
                     disabled={product.countInStock === 0}
                   >
                     Add To Cart

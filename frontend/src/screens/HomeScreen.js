@@ -38,7 +38,7 @@ const HomeScreen = () => {
                 <Button
                   onClick={() => handleClick(category)}
                   key={category}
-                  variant='dark'
+                  variant='secondary'
                   style={{ margin: '5px' }}
                 >
                   {category}
