@@ -11,7 +11,7 @@ const ShippingScreen = () => {
   const cart = useSelector((state) => state.cart)
   const { shippingAddress } = cart
 
-  /*NOTE https://reactjs.org/docs/forms.html#controlled-components
+  /*CHECK https://reactjs.org/docs/forms.html#controlled-components
     NOTE changed initialState being undefined to defined by adding || ''
     NOTE error code: A component is changing an uncontrolled input of type text to be controlled error in ReactJS*/
 

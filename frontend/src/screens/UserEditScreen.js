@@ -67,6 +67,7 @@ const UserEditScreen = () => {
             <Form.Group controlId='name'>
               <Form.Label>Name</Form.Label>
               <Form.Control
+                className='mb-3'
                 type='name'
                 placeholder='Enter name'
                 value={name}
@@ -77,6 +78,7 @@ const UserEditScreen = () => {
             <Form.Group controlId='email'>
               <Form.Label>Email Address</Form.Label>
               <Form.Control
+                className='mb-3'
                 type='email'
                 placeholder='Enter email'
                 value={email}
@@ -86,6 +88,7 @@ const UserEditScreen = () => {
 
             <Form.Group controlId='isadmin'>
               <Form.Check
+                className='mb-3'
                 type='checkbox'
                 label='Is Admin'
                 checked={isAdmin}
@@ -93,7 +96,7 @@ const UserEditScreen = () => {
               ></Form.Check>
             </Form.Group>
 
-            <Button type='submit' variant='secondary'>
+            <Button type='submit' variant='secondary' className='mb-3'>
               Update
             </Button>
           </Form>

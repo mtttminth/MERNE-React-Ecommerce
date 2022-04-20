@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Row, Col, ButtonGroup, Button } from 'react-bootstrap'
+import {
+  Row,
+  Col,
+  ButtonGroup,
+  Dropdown,
+  DropdownButton,
+} from 'react-bootstrap'
 import Product from '../components/Product'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
@@ -32,8 +38,30 @@ const HomeScreen = () => {
         <Message variant='danger'>{error}</Message>
       ) : (
         <Row>
-          <div className='text-center my-4'>
-            <ButtonGroup>
+          <Col sm={12} className='text-center my-4'>
+            <h3>Categories</h3>
+            <DropdownButton
+              id={selectedCategory}
+              as={ButtonGroup}
+              title={selectedCategory}
+              variant='secondary'
+            >
+              {allCategories.map((category) => (
+                <Col key={category} sm={12}>
+                  <Dropdown.Item
+                    eventKey={category}
+                    onClick={() => handleClick(category)}
+                    style={{ margin: '5px' }}
+                  >
+                    {category}
+                  </Dropdown.Item>
+                </Col>
+              ))}
+            </DropdownButton>
+          </Col>
+
+          {/* <ButtonGroup>
+            <Col sm={12} className='text-center my-4'>
               {allCategories.map((category) => (
                 <Button
                   onClick={() => handleClick(category)}
@@ -44,8 +72,8 @@ const HomeScreen = () => {
                   {category}
                 </Button>
               ))}
-            </ButtonGroup>
-          </div>
+            </Col>
+          </ButtonGroup> */}
           {products
             .filter(
               (product) =>
