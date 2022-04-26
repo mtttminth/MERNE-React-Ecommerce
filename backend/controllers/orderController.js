@@ -102,18 +102,15 @@ const getOrders = asyncHandler(async (req, res) => {
 const updateOrderToDelivered = asyncHandler(async (req, res) => {
   const order = await Order.findById(req.params.id)
 
-  if (order && order.paymentMethod === 'Cash') {
+  if (order) {
     order.isDelivered = true
     order.deliveredAt = Date.now()
-    order.isPaid = true
-    order.paidAt = Date.now()
 
-    const updatedOrder = await order.save()
-
-    res.json(updatedOrder)
-  } else if (order) {
-    order.isDelivered = true
-    order.deliveredAt = Date.now()
+    //NOTE set isPaid to true on 'Cash on Delivery'
+    if (order.paymentMethod === 'Cash') {
+      order.isPaid = true
+      order.paidAt = Date.now()
+    }
 
     const updatedOrder = await order.save()
 
