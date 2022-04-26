@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom'
 import {
   Row,
   Col,
@@ -13,6 +14,7 @@ import Loader from '../components/Loader'
 import { listProducts } from '../actions/productActions'
 
 const HomeScreen = () => {
+  const { keyword } = useParams()
   const dispatch = useDispatch()
   const productList = useSelector((state) => state.productList)
   const { loading, error, products } = productList
@@ -26,8 +28,8 @@ const HomeScreen = () => {
   const handleClick = (category) => setSelectedCategory(category)
 
   useEffect(() => {
-    dispatch(listProducts())
-  }, [dispatch])
+    dispatch(listProducts(keyword))
+  }, [dispatch, keyword])
 
   return (
     <>
