@@ -237,3 +237,19 @@ const OrderScreen = () => {
 }
 
 export default OrderScreen
+
+/* //NOTE if not for cash on delivery
+               {userInfo &&
+                userInfo.isAdmin &&
+                order.isPaid &&
+                !order.isDelivered && (
+                  <ListGroup.Item>
+                    <Button
+                      type='button'
+                      className='btn btn-block'
+                      onClick={deliverHandler}
+                    >
+                      Mark As Delivered
+                    </Button>
+                  </ListGroup.Item>
+                )} */

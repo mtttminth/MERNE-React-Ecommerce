@@ -17,7 +17,6 @@ const ProductListScreen = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-  const { id } = useParams()
   const { pageNumber } = useParams() || 1
 
   const productList = useSelector((state) => state.productList)
@@ -44,7 +43,7 @@ const ProductListScreen = () => {
   useEffect(() => {
     dispatch({ type: PRODUCT_CREATE_RESET })
 
-    if (!userInfo.isAdmin) {
+    if (!userInfo.isAdmin || !userInfo.isAdmin) {
       navigate('/login')
     }
     if (successCreate) {
